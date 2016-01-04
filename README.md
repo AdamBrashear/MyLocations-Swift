@@ -1,4 +1,4 @@
-# MyLocations-Swift
+# MyLocations-Swift (3/4)
 This app is made by me as a third part of Ray Wenderlich book – “The iOS Apprentice Fourth Edition (Beginning iOS Development with Swift 2) Tutorial 3: MyLocations”.
 
 __Tools used:__ xCode 7.2 and swift 2.1.
