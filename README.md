@@ -15,6 +15,7 @@ __Learned:__
 - How to use the camera and photo library
 - How to use “lazy loading” to improve the responsiveness and memory usage of your apps
 - How to play basic sound effects
+- How to use storuboard unwind segues
 - How to make your app look more impressive with UIView-based animations and __Core Animation__
 
 I definitely recomd you to visit Ray Wenderlich web site and check out latest books and tutorials! - http://www.raywenderlich.com/
