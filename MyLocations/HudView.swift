@@ -20,9 +20,11 @@ class HudView: UIView {
     
     view.userInteractionEnabled = false
     
+    hudView.showAnimated(animated)
     return hudView
   }
   
+  //MARK: - Drawing
   // Only override drawRect: if you perform custom drawing.
   // An empty implementation adversely affects performance during animation.
   override func drawRect(rect: CGRect) {
@@ -59,5 +61,16 @@ class HudView: UIView {
     text.drawAtPoint(textPoint, withAttributes: attribs)
   }
   
-
+  //MARK: - Animation
+  func showAnimated(animated: Bool) {
+      if animated {
+        alpha = 0
+        transform = CGAffineTransformMakeScale(1.3, 1.3)
+        UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: [], animations: { () -> Void in
+          self.alpha = 1
+          self.transform = CGAffineTransformIdentity
+          }, completion: nil)
+      }
+  }
+  
 }
