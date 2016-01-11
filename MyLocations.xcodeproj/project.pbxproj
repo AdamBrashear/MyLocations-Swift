@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		513E2CAA1C42727500413797 /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513E2CA91C42727500413797 /* LocationDetailsViewController.swift */; };
+		514198771C42AFCC002BDE19 /* CategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514198761C42AFCC002BDE19 /* CategoryPickerViewController.swift */; };
 		519653A51C3C2FC5002A5C9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519653A41C3C2FC5002A5C9E /* AppDelegate.swift */; };
 		519653A71C3C2FC5002A5C9E /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519653A61C3C2FC5002A5C9E /* CurrentLocationViewController.swift */; };
 		519653A91C3C2FC5002A5C9E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519653A81C3C2FC5002A5C9E /* SecondViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		513E2CA91C42727500413797 /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
+		514198761C42AFCC002BDE19 /* CategoryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryPickerViewController.swift; sourceTree = "<group>"; };
 		519653A11C3C2FC5002A5C9E /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		519653A41C3C2FC5002A5C9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		519653A61C3C2FC5002A5C9E /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +62,8 @@
 			children = (
 				519653A41C3C2FC5002A5C9E /* AppDelegate.swift */,
 				519653A61C3C2FC5002A5C9E /* CurrentLocationViewController.swift */,
+				514198761C42AFCC002BDE19 /* CategoryPickerViewController.swift */,
+				513E2CA91C42727500413797 /* LocationDetailsViewController.swift */,
 				519653A81C3C2FC5002A5C9E /* SecondViewController.swift */,
 				519653AA1C3C2FC5002A5C9E /* Main.storyboard */,
 				519653AD1C3C2FC5002A5C9E /* Assets.xcassets */,
@@ -138,8 +144,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				513E2CAA1C42727500413797 /* LocationDetailsViewController.swift in Sources */,
 				519653A91C3C2FC5002A5C9E /* SecondViewController.swift in Sources */,
 				519653A51C3C2FC5002A5C9E /* AppDelegate.swift in Sources */,
+				514198771C42AFCC002BDE19 /* CategoryPickerViewController.swift in Sources */,
 				519653A71C3C2FC5002A5C9E /* CurrentLocationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
