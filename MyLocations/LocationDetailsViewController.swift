@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import CoreData
 
 //Create private global constant
 private let dateFormatter: NSDateFormatter = {
@@ -31,6 +32,8 @@ class LocationDetailsViewController: UITableViewController {
   var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
   var placemark: CLPlacemark?
   var categoryName = "No Category"
+  var managedObjectContext: NSManagedObjectContext!
+  var date = NSDate()
   
   // MARK: - View life cycle
   override func viewDidLoad() {
@@ -48,7 +51,7 @@ class LocationDetailsViewController: UITableViewController {
       addressLabel.text = "No Address Found"
     }
     
-    dateLabel.text = formatDate(NSDate())
+    dateLabel.text = formatDate(date)
     
     //Add tap gesture recognizer to hide keyboard
     let gestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard:"))
@@ -60,7 +63,25 @@ class LocationDetailsViewController: UITableViewController {
   @IBAction func done() {
     let hudView = HudView.hudInView(navigationController!.view, animated: true)
     hudView.text = "Tagged"
-    //dismissViewControllerAnimated(true, completion: nil)
+    
+    let location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: managedObjectContext) as! Location
+    //Fill entity
+    location.locationDescription = descriptionTextView.text
+    location.category = categoryName
+    location.latitude = coordinate.latitude
+    location.longitude = coordinate.longitude
+    location.date = date
+    location.placemark = placemark
+    
+    do {
+      try managedObjectContext.save()
+    } catch {
+      fatalError("Error: \(error)")
+    }
+    
+    afterDelay(0.6) {
+      self.dismissViewControllerAnimated(true, completion: nil)
+    }
   }
   
   @IBAction func cancel() {
