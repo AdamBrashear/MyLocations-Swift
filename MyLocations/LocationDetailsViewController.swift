@@ -61,8 +61,7 @@ class LocationDetailsViewController: UITableViewController {
   
   // MARK: - Actions
   @IBAction func done() {
-    let hudView = HudView.hudInView(navigationController!.view, animated: true)
-    hudView.text = "Tagged"
+    
     
     let location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: managedObjectContext) as! Location
     //Fill entity
@@ -75,13 +74,19 @@ class LocationDetailsViewController: UITableViewController {
     
     do {
       try managedObjectContext.save()
+      
+      let hudView = HudView.hudInView(navigationController!.view, animated: true)
+      hudView.text = "Tagged"
+      
+      afterDelay(0.6) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+      }
+      
     } catch {
-      fatalError("Error: \(error)")
+      fatalCoreDataError(error)
     }
     
-    afterDelay(0.6) {
-      self.dismissViewControllerAnimated(true, completion: nil)
-    }
+    
   }
   
   @IBAction func cancel() {
