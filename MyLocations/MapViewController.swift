@@ -16,9 +16,40 @@ class MapViewController: UIViewController {
   @IBOutlet weak var mapView: MKMapView!
   var managedObjectContext: NSManagedObjectContext! {
     didSet {
-      NSNotificationCenter.defaultCenter().addObserverForName(NSManagedObjectContextObjectsDidChangeNotification, object: managedObjectContext, queue: NSOperationQueue.mainQueue()) { [unowned self] _ -> Void in
+      NSNotificationCenter.defaultCenter().addObserverForName(NSManagedObjectContextObjectsDidChangeNotification, object: managedObjectContext, queue: NSOperationQueue.mainQueue()) { [unowned self] notification -> Void in
         if self.isViewLoaded() {
-          self.updateLocations()
+          //Ver 1 (Optimisation)
+          if let locations = notification.userInfo?["inserted"] as? NSSet {
+            let asArray = locations.allObjects as! [Location]
+            self.mapView.addAnnotations(asArray)
+            self.locations.appendContentsOf(asArray)
+          }
+          
+          if let locations = notification.userInfo?["updated"] as? NSSet {
+            let asArray = locations.allObjects as! [Location]
+            self.mapView.removeAnnotations(asArray)
+            self.mapView.addAnnotations(asArray)
+            
+            for location in asArray {
+              if let index = self.locations.indexOf(location) {
+                self.locations[index] = location
+              }
+            }
+          }
+          
+          if let locations = notification.userInfo?["deleted"] as? NSSet {
+            let asArray = locations.allObjects as! [Location]
+            self.mapView.removeAnnotations(asArray)
+            
+            for location in asArray {
+              if let index = self.locations.indexOf(location) {
+              self.locations.removeAtIndex(index)
+              }
+            }
+          }
+
+          //Ver 2 (Fetch and refresh all object from Core Data)
+          //self.updateLocations()
         }
       }
     }
