@@ -208,7 +208,7 @@ class LocationDetailsViewController: UITableViewController {
     if indexPath.section == sectionName.DescriptionSection.rawValue && indexPath.row == 0 {
       descriptionTextView.becomeFirstResponder()
     } else if indexPath.section == sectionName.AddPhotoSection.rawValue && indexPath.row == 0 {
-      takePhotoWithCamera()
+      pickPhoto()
     }
   }
 }
@@ -223,6 +223,37 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
     presentViewController(imagePicker, animated: true, completion: nil)
   }
   
+  func choosePhotoFromLibrary() {
+    let imagePicker = UIImagePickerController()
+    imagePicker.sourceType = .PhotoLibrary
+    imagePicker.delegate = self
+    imagePicker.allowsEditing = true
+    presentViewController(imagePicker, animated: true, completion: nil)
+  }
+  
+  func pickPhoto() {
+    if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+      showPhotoMenu()
+    } else {
+      choosePhotoFromLibrary()
+    }
+  }
+  
+  func showPhotoMenu() {
+    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+    
+    let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+    alertController.addAction(cancelAction)
+    
+    let takePhotoAction = UIAlertAction(title: "Take Photo", style: .Default, handler: nil)
+    alertController.addAction(takePhotoAction)
+    
+    let chooseFromLibraryAction = UIAlertAction(title: "Choose From Library", style: .Default, handler: nil)
+    alertController.addAction(chooseFromLibraryAction)
+    
+    presentViewController(alertController, animated: true, completion: nil)
+  }
+  
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
     dismissViewControllerAnimated(true, completion: nil)
   }
@@ -230,4 +261,5 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {
     dismissViewControllerAnimated(true, completion: nil)
   }
+  
 }
