@@ -64,6 +64,11 @@ class LocationDetailsViewController: UITableViewController {
     
     if let location = locationToEdit {
       title = "Edit Location"
+      if location.hasPhoto {
+        if let image = location.photoImage {
+          showImage(image)
+        }
+      }
     }
     
     descriptionTextView.text = descriptionText
@@ -103,6 +108,7 @@ class LocationDetailsViewController: UITableViewController {
     } else {
       hudText = "Tagged"
       location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: managedObjectContext) as! Location
+      location.photoID = nil
     }
     
     location.locationDescription = descriptionTextView.text
@@ -111,6 +117,21 @@ class LocationDetailsViewController: UITableViewController {
     location.longitude = coordinate.longitude
     location.date = date
     location.placemark = placemark
+    
+    //Save image to users document directory
+    if let image = image {
+      if !location.hasPhoto {
+        location.photoID = Location.nextPhotoID()
+      }
+      
+      if let data = UIImageJPEGRepresentation(image, 0.5) {
+        do {
+          try data.writeToFile(location.photoPath, options: .DataWritingAtomic)
+        } catch {
+          print("Error writing file: \(error)")
+        }
+      }
+    }
     
     do {
       try managedObjectContext.save()
@@ -217,7 +238,7 @@ class LocationDetailsViewController: UITableViewController {
       case (sectionName.DescriptionSection.rawValue, 0):
         return 88
     case (sectionName.AddPhotoSection.rawValue, _):
-        return imageView.hidden ? 44 : 88
+        return imageView.hidden ? 44 : 280
     case (sectionName.ReadOnlyInfoSection.rawValue, 2):
         addressLabel.frame.size = CGSize(width: view.bounds.size.width - 115 , height: 10000)
         addressLabel.sizeToFit()

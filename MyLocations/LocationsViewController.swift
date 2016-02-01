@@ -79,6 +79,7 @@ class LocationsViewController: UITableViewController {
   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     if editingStyle == .Delete {
       let location = fetchedResultsController.objectAtIndexPath(indexPath) as! Location
+      location.remocePhotoFile()
       managedObjectContext.deleteObject(location)
       
       do {
