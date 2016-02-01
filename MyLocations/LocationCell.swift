@@ -13,6 +13,7 @@ class LocationCell: UITableViewCell {
   //MARK: - Outlets
   @IBOutlet weak var descriptionLabel: UILabel!
   @IBOutlet weak var addressLabel: UILabel!
+  @IBOutlet weak var photoImageView: UIImageView!
   
   override func awakeFromNib() {
       super.awakeFromNib()
@@ -36,19 +37,24 @@ class LocationCell: UITableViewCell {
     //Read address
     if let placemark = location.placemark {
       var text = ""
-      if let s = placemark.subThoroughfare {
-      text += s + " "
-      }
-      if let s = placemark.thoroughfare {
-        text += s + ", "
-      }
-      if let s = placemark.locality {
-        text += s
-      }
+      text.addText(placemark.subThoroughfare)
+      text.addText(placemark.thoroughfare, withSeparator: " ")
+      text.addText(placemark.locality, withSeparator: ", ")
       addressLabel.text = text
     } else {
       addressLabel.text = String(format:"Lat: %.8f, Long: %.8f", location.latitude, location.longitude)
     }
+    
+    photoImageView.image = imageForLocation(location)
   }
+  
+  func imageForLocation(location: Location) -> UIImage {
+    if location.hasPhoto, let image = location.photoImage {
+      return image.resizedImageWithBounds(CGSize(width: 52, height: 52))
+    }
+    
+    return UIImage()
+  }
+  
 
 }
