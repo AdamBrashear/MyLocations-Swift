@@ -16,9 +16,11 @@
 		5141987B1C43BD8B002BDE19 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5141987A1C43BD8B002BDE19 /* Functions.swift */; };
 		515E0E4E1C5F90FF00962A3E /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515E0E4D1C5F90FF00962A3E /* UIImage+Resize.swift */; };
 		515E0E501C5F971700962A3E /* String+ AddText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515E0E4F1C5F971700962A3E /* String+ AddText.swift */; };
+		515E0E521C5FA94B00962A3E /* MyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515E0E511C5FA94B00962A3E /* MyTabBarController.swift */; };
+		515E0E541C5FAA5F00962A3E /* MyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515E0E531C5FAA5F00962A3E /* MyNavigationController.swift */; };
+		515E0E561C5FAADA00962A3E /* MyImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515E0E551C5FAADA00962A3E /* MyImagePickerController.swift */; };
 		519653A51C3C2FC5002A5C9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519653A41C3C2FC5002A5C9E /* AppDelegate.swift */; };
 		519653A71C3C2FC5002A5C9E /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519653A61C3C2FC5002A5C9E /* CurrentLocationViewController.swift */; };
-		519653A91C3C2FC5002A5C9E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519653A81C3C2FC5002A5C9E /* SecondViewController.swift */; };
 		519653AC1C3C2FC5002A5C9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 519653AA1C3C2FC5002A5C9E /* Main.storyboard */; };
 		519653AE1C3C2FC5002A5C9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 519653AD1C3C2FC5002A5C9E /* Assets.xcassets */; };
 		519653B11C3C2FC5002A5C9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 519653AF1C3C2FC5002A5C9E /* LaunchScreen.storyboard */; };
@@ -38,10 +40,12 @@
 		5141987A1C43BD8B002BDE19 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		515E0E4D1C5F90FF00962A3E /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		515E0E4F1C5F971700962A3E /* String+ AddText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ AddText.swift"; sourceTree = "<group>"; };
+		515E0E511C5FA94B00962A3E /* MyTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabBarController.swift; sourceTree = "<group>"; };
+		515E0E531C5FAA5F00962A3E /* MyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNavigationController.swift; sourceTree = "<group>"; };
+		515E0E551C5FAADA00962A3E /* MyImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImagePickerController.swift; sourceTree = "<group>"; };
 		519653A11C3C2FC5002A5C9E /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		519653A41C3C2FC5002A5C9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		519653A61C3C2FC5002A5C9E /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewController.swift; sourceTree = "<group>"; };
-		519653A81C3C2FC5002A5C9E /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		519653AB1C3C2FC5002A5C9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		519653AD1C3C2FC5002A5C9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		519653B01C3C2FC5002A5C9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -119,12 +123,14 @@
 		51B18AD71C44464F00E81305 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				519653A81C3C2FC5002A5C9E /* SecondViewController.swift */,
 				519653A61C3C2FC5002A5C9E /* CurrentLocationViewController.swift */,
 				514198761C42AFCC002BDE19 /* CategoryPickerViewController.swift */,
 				513E2CA91C42727500413797 /* LocationDetailsViewController.swift */,
 				51DBC8931C45294400A756E1 /* LocationsViewController.swift */,
 				513B633A1C47CE9B0083E6DC /* MapViewController.swift */,
+				515E0E511C5FA94B00962A3E /* MyTabBarController.swift */,
+				515E0E531C5FAA5F00962A3E /* MyNavigationController.swift */,
+				515E0E551C5FAADA00962A3E /* MyImagePickerController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -211,9 +217,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				513E2CAA1C42727500413797 /* LocationDetailsViewController.swift in Sources */,
+				515E0E541C5FAA5F00962A3E /* MyNavigationController.swift in Sources */,
 				51B18AD41C44463600E81305 /* DataModel.xcdatamodeld in Sources */,
+				515E0E561C5FAADA00962A3E /* MyImagePickerController.swift in Sources */,
 				51B18ADC1C44494800E81305 /* Location.swift in Sources */,
-				519653A91C3C2FC5002A5C9E /* SecondViewController.swift in Sources */,
 				51DBC8941C45294400A756E1 /* LocationsViewController.swift in Sources */,
 				515E0E501C5F971700962A3E /* String+ AddText.swift in Sources */,
 				514198791C43AEC1002BDE19 /* HudView.swift in Sources */,
@@ -225,6 +232,7 @@
 				519653A51C3C2FC5002A5C9E /* AppDelegate.swift in Sources */,
 				514198771C42AFCC002BDE19 /* CategoryPickerViewController.swift in Sources */,
 				519653A71C3C2FC5002A5C9E /* CurrentLocationViewController.swift in Sources */,
+				515E0E521C5FA94B00962A3E /* MyTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
