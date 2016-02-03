@@ -9,7 +9,8 @@
 import UIKit
 import CoreLocation
 import CoreData
-import QuartzCore
+import QuartzCore //for Core Animation
+import AudioToolbox //for audio playing
 
 class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -46,6 +47,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     button.center.y = 220
     return button
   }()
+  var soundID: SystemSoundID = 0
   
   //MARK: - View life cycle
   override func viewDidLoad() {
@@ -53,6 +55,9 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     // Do any additional setup after loading the view, typically from a nib.
     updateLabels()
     configureGetButton()
+    
+    //Load sound
+    loadSoundEffect("Sound.caf")
   }
 
   //MARK: - Actions
@@ -136,10 +141,26 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
   }
   
   func configureGetButton() {
+    let spinnerTag = 1000
+    
     if updatingLocation {
       getButton.setTitle("Stop", forState: .Normal)
+      
+      if view.viewWithTag(spinnerTag) == nil {
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .White)
+        spinner.center = messageLabel.center
+        spinner.center.y += spinner.bounds.size.height / 2 + 15
+        spinner.startAnimating()
+        spinner.tag = spinnerTag
+        containerView.addSubview(spinner)
+      }
     } else {
-      getButton.setTitle("Get My Location", forState: .Normal) }
+      getButton.setTitle("Get My Location", forState: .Normal)
+      
+      if let spinner = view.viewWithTag(spinnerTag) {
+        spinner.removeFromSuperview()
+      }
+    }
   }
   
   // MARK: - Logo View
@@ -326,6 +347,12 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
           print("*** Found placemarks: \(placemarks), error: \(error)")
           self.lastLocationError = error
           if error == nil, let p = placemarks where !p.isEmpty {
+            //Play sound effect
+            if self.placemark == nil {
+              print("FIRST TIME")
+              self.playSoundEffect()
+            }
+            
             self.placemark = p.last!
           } else {
             self.placemark = nil
@@ -347,6 +374,27 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         configureGetButton()
       }
     }
+  }
+  
+  // MARK: - Sound Effect
+  func loadSoundEffect(name: String) {
+    if let path = NSBundle.mainBundle().pathForResource(name, ofType: nil) {
+    
+      let fileURL = NSURL.fileURLWithPath(path, isDirectory: false)
+      let error = AudioServicesCreateSystemSoundID(fileURL, &soundID)
+      if error != kAudioServicesNoError {
+        print("Error code \(error) loading sound at path: \(path)")
+      }
+    }
+  }
+  
+  func unloadSoundEffect() {
+    AudioServicesDisposeSystemSoundID(soundID)
+    soundID = 0
+  }
+  
+  func playSoundEffect() {
+    AudioServicesPlaySystemSound(soundID)
   }
   
   
